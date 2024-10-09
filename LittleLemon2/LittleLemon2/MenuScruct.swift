@@ -21,10 +21,12 @@ struct MenuItem: Codable, Hashable, Identifiable {
     let title: String
     let price: String
     let category:String
+    let image:String
     enum CodingKeys: String, CodingKey {
         case title = "title"
         case price = "price"
         case category="category"
+        case image="image"
     }
     
 }

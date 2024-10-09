@@ -17,7 +17,7 @@ extension Dish {
             }
             let oneDish = Dish(context: context)
             oneDish.title = menuItem.title
-            
+            oneDish.image=menuItem.image
             oneDish.price = menuItem.price
             
         }

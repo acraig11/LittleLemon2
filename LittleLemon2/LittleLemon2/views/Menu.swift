@@ -1,6 +1,6 @@
 //
-//  OurDishes.swift
-//  CoreDataListExercise
+// Menu.swift
+//
 //
 //  Created by alan craig on 10/8/24.
 //
@@ -19,12 +19,7 @@ struct Menu: View {
     @State var dessertsIsEnabled = true
     @State var drinksIsEnabled = true
     
-    static private var sortDescriptors: [NSSortDescriptor] {
-        [NSSortDescriptor(key: "title",
-                          ascending: true,
-                          selector:
-                            #selector(NSString.localizedStandardCompare))]
-    }
+    
     
     @FetchRequest(
         sortDescriptors:
