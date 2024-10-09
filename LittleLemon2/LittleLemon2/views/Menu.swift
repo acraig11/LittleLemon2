@@ -21,16 +21,12 @@ struct Menu: View {
     
     
     
-    @FetchRequest(
-        sortDescriptors:
-            [],
-        animation: .default)
-    private var dishes: FetchedResults<Dish>
-    
+  
    
     var body: some View {
         NavigationView {
         VStack {
+           
             Header()
                 .frame(maxHeight: 40)
                 .background(Color.white)

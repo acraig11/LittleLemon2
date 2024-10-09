@@ -16,21 +16,21 @@ struct Onboarding: View {
     @State  var lastName: String = ""
     @State  var email: String = ""
     @State var isLoggedIn = false
-   
-        
-        
-      
+    
+    
+    
+    
     var body: some View {
         NavigationStack {
             VStack{
-              
+                Header()
                 Hero()      // hero hstack
-                     .background(Color.primaryColor1)
-                     .padding(.top,50)
+                    .background(Color.primaryColor1)
+                    .padding(.top,50)
                 VStack  {
                     
-              
-                  
+                    
+                    
                     // start of second vstack
                     VStack{
                         Text(
@@ -60,6 +60,14 @@ struct Onboarding: View {
                             "email",
                             text: $email
                         )
+                        if viewModel.errorMessageShow {
+                            withAnimation() {
+                                Text(viewModel.errorMessage)
+                                    .foregroundColor(.red)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(.leading)
+                            }
+                        }
                         Button(action: {
                             
                             if viewModel.validateUserInput(firstName:firstName, lastName:lastName, email:email){
@@ -67,14 +75,17 @@ struct Onboarding: View {
                                 UserDefaults.standard.set(lastName, forKey: kLastName)
                                 UserDefaults.standard.set(email, forKey: kEmail)
                                 UserDefaults.standard.set(true, forKey: kIsLoggedIn)
-                                isLoggedIn = true}
+                                isLoggedIn = true
+                                firstName = ""
+                                lastName = ""
+                                email = ""                            }
                             
                         }//button action
                                , label: {
                             Text("Register")
                                 .font(.title2)
                                 .frame(maxWidth: .infinity)
-                                
+                            
                                 .padding(10)
                                 .background(Color.primaryColor2)
                             
@@ -86,21 +97,26 @@ struct Onboarding: View {
                         ) //button
                         
                     } //innermost vstack
-                    .frame(alignment:.leading)                } // middle vstack
-                //vstack
-            }// whole screen vstack
-            .frame(alignment:.leading)
-            .frame(maxHeight: 1200, alignment: .topLeading)
+                    .frame(alignment:.leading)
+                    .onAppear() {
+                        if UserDefaults.standard.bool(forKey: kIsLoggedIn) {
+                            isLoggedIn = true
+                        }
+                    } // middle vstack
+                    //vstack
+                }// whole screen vstack
+                .frame(alignment:.leading)
+                .frame(maxHeight: 1200, alignment: .topLeading)
+                
+                .navigationDestination(isPresented: $isLoggedIn) {
+                    Home()}
+                //is logged in
+            }//nav stack
             
-            .navigationDestination(isPresented: $isLoggedIn) {
-                Home()}
-            //is logged in
-        }//nav stack
-       
-        
+            
+        }
     }
 }
-
 
 #Preview {
     Onboarding()

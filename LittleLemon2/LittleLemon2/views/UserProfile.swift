@@ -17,6 +17,7 @@ struct UserProfile: View {
     @State private var isLoggedOut = false
     @State private var showingAlert = false
     var body: some View {
+       
         VStack{
             Text("Personal Information")
             Image("profile-image-placeholder")
@@ -46,17 +47,22 @@ struct UserProfile: View {
                 firstName=""
                 lastName=""
                 email=""
-                self.presentation.wrappedValue.dismiss()            }
+                isLoggedOut=true
+                         }
             //button action
                   
            
             
-        }  .onAppear {
+        }.navigationDestination(isPresented: $isLoggedOut) {
+            Onboarding()}
+        .onAppear {
             firstName = viewModel.firstName
             lastName = viewModel.lastName
             email = viewModel.email
+               
         }
     }
+        
 }
 
 #Preview {
