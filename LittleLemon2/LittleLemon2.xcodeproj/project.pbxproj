@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		A3871A0A2CB5E6950022D243 /* viewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3871A092CB5E6950022D243 /* viewModel.swift */; };
 		A3871A0C2CB5E6DE0022D243 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3871A0B2CB5E6DE0022D243 /* Styles.swift */; };
+		A3EA0A7E2CB60BB2006B628A /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA0A7D2CB60BB2006B628A /* Home.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A3871A092CB5E6950022D243 /* viewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewModel.swift; sourceTree = "<group>"; };
 		A3871A0B2CB5E6DE0022D243 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		A3D70CD12CB5D24700A937ED /* restaurant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = restaurant.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3EA0A7D2CB60BB2006B628A /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -42,6 +44,7 @@
 				A3D70CD32CB5D24700A937ED /* LittleLemon2 */,
 				A3871A092CB5E6950022D243 /* viewModel.swift */,
 				A3871A0B2CB5E6DE0022D243 /* Styles.swift */,
+				A3EA0A7D2CB60BB2006B628A /* Home.swift */,
 				A3D70CD22CB5D24700A937ED /* Products */,
 			);
 			sourceTree = "<group>";
@@ -129,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3871A0C2CB5E6DE0022D243 /* Styles.swift in Sources */,
+				A3EA0A7E2CB60BB2006B628A /* Home.swift in Sources */,
 				A3871A0A2CB5E6950022D243 /* viewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -25,7 +25,7 @@ struct ContentView: View {
                        
                     }
                 }//list
-                NavigationLink("ourDishes", destination: OurDishes())
+                NavigationLink("ourDishes", destination: Home())
             }//vstack
            .onAppear{createDishes()}
         }

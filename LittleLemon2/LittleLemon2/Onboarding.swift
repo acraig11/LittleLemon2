@@ -93,7 +93,7 @@ struct Onboarding: View {
             .frame(maxHeight: 1200, alignment: .topLeading)
             
             .navigationDestination(isPresented: $isLoggedIn) {
-                OurDishes()}
+                Home()}
             //is logged in
         }//nav stack
        

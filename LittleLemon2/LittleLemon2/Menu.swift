@@ -7,7 +7,7 @@
 import SwiftUI
 import CoreData
 
-struct OurDishes: View {
+struct Menu: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @ObservedObject var dishesModel = DishesModel()
@@ -28,44 +28,49 @@ struct OurDishes: View {
         animation: .default)
     private var dishes: FetchedResults<Dish>
     
-        
+   
     var body: some View {
+        NavigationView {
         VStack {
-         
-            
-            Text ("Tap to order")
-                .foregroundColor(.black)
-                .padding([.leading, .trailing], 40)
-                .padding([.top, .bottom], 8)
-                .background(Color("approvedYellow"))
-                .cornerRadius(20)
-            
-            
-            NavigationView {
-                FetchedObjects(
+            Header()
+                .frame(maxHeight: 40)
+                .background(Color.white)
+         Hero()
+                .frame(maxHeight: 180)
+                .padding()
+                
+            TextField("Search menu", text: $searchText)
+                .textFieldStyle(.roundedBorder)
+            Spacer()
+            Text("ORDER FOR DELIVERY!")
+                .font(.sectionTitle())
+                .foregroundColor(.highlightColor1)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.top)
+                .padding(.leading)
+            FetchedObjects(
                     predicate:buildPredicate(),
-                    sortDescriptors: buildSortDescriptors()) {
+                    sortDescriptors: buildSortDescriptors()){
                         (dishes: [Dish]) in
                         List {
                             ForEach(dishes, id:\.self) { dish in
                                 DisplayDish(dish)
                                     .onTapGesture {
                                         showAlert.toggle()
-                                   print(dish)
-                                    }
-                            }
-                        }
-                        .searchable(text: $searchText,
-                                    prompt: "search...")
-                    }
-            }
+                                  
+                                    } //on tap
+                            }//for each
+                        }//list
+                        
+                    }//sort
+            } .background(Color.primaryColor1)
             
             .padding(.top, -10)
             
             .alert("Order placed, thanks!",
                    isPresented: $showAlert) {
                 Button("OK", role: .cancel) { }
-            }
+            }//alert
             
             // makes the list background invisible, default is gray
             .scrollContentBackground(.hidden)
@@ -76,9 +81,9 @@ struct OurDishes: View {
                     await dishesModel.reload(viewContext)
                 }
                 menuLoaded = true
-            }
-        }
-    }
+            } //task
+        }//nav view
+    }//some view
     
     private func buildPredicate() -> NSPredicate {
         return searchText == "" ?
