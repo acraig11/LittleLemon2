@@ -14,6 +14,10 @@ struct Menu: View {
     @State private var showAlert = false
     @State private var menuLoaded = false
     @State var searchText = ""
+    @State var startersIsEnabled = true
+    @State var mainsIsEnabled = true
+    @State var dessertsIsEnabled = true
+    @State var drinksIsEnabled = true
     
     static private var sortDescriptors: [NSSortDescriptor] {
         [NSSortDescriptor(key: "title",
@@ -48,6 +52,15 @@ struct Menu: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.top)
                 .padding(.leading)
+            HStack(spacing: 20) {
+                Toggle("Starters", isOn: $startersIsEnabled)
+                Toggle("Mains", isOn: $mainsIsEnabled)
+                Toggle("Desserts", isOn: $dessertsIsEnabled)
+                Toggle("Drinks", isOn: $drinksIsEnabled)
+            }
+            .toggleStyle(ChoicesToggleStyle())
+            .padding(.horizontal)
+            .background(Color.white)
             FetchedObjects(
                     predicate:buildPredicate(),
                     sortDescriptors: buildSortDescriptors()){

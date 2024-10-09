@@ -73,7 +73,7 @@ struct ChoicesToggleStyle: ToggleStyle {
                 configuration.label
             } .font(.custom("Karla-Bold", size: 16))
         }
-        .foregroundColor(Color.primaryColor1)
+        .foregroundColor(Color.black)
         .padding(5)
         .background {
             if configuration.isOn {
