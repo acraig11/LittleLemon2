@@ -61,21 +61,16 @@ struct Menu: View {
             .toggleStyle(ChoicesToggleStyle())
             .padding(.horizontal)
             .background(Color.white)
-            FetchedObjects(
-                    predicate:buildPredicate(),
-                    sortDescriptors: buildSortDescriptors()){
-                        (dishes: [Dish]) in
-                        List {
-                            ForEach(dishes, id:\.self) { dish in
-                                DisplayDish(dish)
-                                    .onTapGesture {
-                                        showAlert.toggle()
-                                  
-                                    } //on tap
-                            }//for each
-                        }//list
-                        
-                    }//sort
+            FetchedObjects(predicate: buildPredicate(),
+                           sortDescriptors: buildSortDescriptors()) {
+                (dishes: [Dish]) in
+                List(dishes) { dish in
+                    NavigationLink(destination: DetailItem(dish: dish)) {
+                        FoodItem(dish: dish)
+                    }
+                }
+                .listStyle(.plain)
+            }
             } .background(Color.primaryColor1)
             
             .padding(.top, -10)
@@ -98,10 +93,17 @@ struct Menu: View {
         }//nav view
     }//some view
     
-    private func buildPredicate() -> NSPredicate {
-        return searchText == "" ?
-        NSPredicate(value: true) :
-        NSPredicate(format: "title CONTAINS[cd] %@", searchText)
+    func buildPredicate() -> NSCompoundPredicate {
+        let search = searchText == "" ? NSPredicate(value: true) : NSPredicate(format: "title CONTAINS[cd] %@", searchText)
+        let starters = !startersIsEnabled ? NSPredicate(format: "category != %@", "starters") : NSPredicate(value: true)
+        let mains = !mainsIsEnabled ? NSPredicate(format: "category != %@", "mains") : NSPredicate(value: true)
+        let desserts = !dessertsIsEnabled ? NSPredicate(format: "category != %@", "desserts") : NSPredicate(value: true)
+        let drinks = !drinksIsEnabled ? NSPredicate(format: "category != %@", "drinks") : NSPredicate(value: true)
+
+        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [search, starters, mains, desserts, drinks])
+        print(compoundPredicate)
+        return compoundPredicate
+        
     }
     
     private func buildSortDescriptors() -> [NSSortDescriptor] {
