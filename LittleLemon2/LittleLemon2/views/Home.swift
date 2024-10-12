@@ -22,15 +22,7 @@ struct Home: View {
                 }//inside tab item
                 )//tab item
            
-            OurDishes()
-            .font(.title)
-            .tabItem({
-               
-                Label ( "Dishes",
-                            systemImage: "list.dash")
-                }//inside tab item
-                )//tab item
-           
+          
        
      
             UserProfile()
