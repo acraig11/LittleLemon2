@@ -86,17 +86,17 @@ struct Menu: View {
     
     func buildPredicate() -> NSCompoundPredicate {
         let search = searchText == "" ? NSPredicate(value: true) : NSPredicate(format: "title CONTAINS[cd] %@", searchText)
-        let starters = !startersIsEnabled ? NSPredicate(format: "category != %@", "starters") : NSPredicate(value: true)
-        let mains = !mainsIsEnabled ? NSPredicate(format: "category != %@", "mains") : NSPredicate(value: true)
-        let desserts = !dessertsIsEnabled ? NSPredicate(format: "category != %@", "desserts") : NSPredicate(value: true)
-        let drinks = !drinksIsEnabled ? NSPredicate(format: "category != %@", "drinks") : NSPredicate(value: true)
+        let starters = startersIsEnabled ? NSPredicate(value: true) :NSPredicate(format: "category = %@", "starters" )
+        
+        let mains = !mainsIsEnabled ? NSPredicate(format: "category = %@", "mains") : NSPredicate(value: true)
+        let desserts = !dessertsIsEnabled ? NSPredicate(format: "category = %@", "desserts") : NSPredicate(value: true)
+        let drinks = !drinksIsEnabled ? NSPredicate(format: "category = %@", "drinks") : NSPredicate(value: true)
 
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [search, starters, mains, desserts, drinks])
         print(compoundPredicate)
         return compoundPredicate
         
     }
-    
     private func buildSortDescriptors() -> [NSSortDescriptor] {
         [NSSortDescriptor(key: "title",
                           ascending: true,

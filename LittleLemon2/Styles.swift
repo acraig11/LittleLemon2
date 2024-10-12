@@ -76,7 +76,7 @@ struct ChoicesToggleStyle: ToggleStyle {
         .foregroundColor(Color.black)
         .padding(5)
         .background {
-            if configuration.isOn {
+            if !configuration.isOn {
                 Color.highlightColor1
             }
         }

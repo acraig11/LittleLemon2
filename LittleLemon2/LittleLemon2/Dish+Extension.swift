@@ -19,7 +19,7 @@ extension Dish {
             oneDish.title = menuItem.title
             oneDish.image=menuItem.image
             oneDish.price = menuItem.price
-            
+            oneDish.category=menuItem.category
         }
     }
     static func request() -> NSFetchRequest<NSFetchRequestResult> {
